@@ -1,0 +1,9 @@
+# Only needed when the whole project is uploaded into public_html and the document root is NOT changed to /public.
+# It blocks the private folders and sends every other request into /public.
+Options -Indexes
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^(app|database|storage|tests)(/|$) - [F,L]
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
